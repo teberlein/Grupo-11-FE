@@ -1,11 +1,3 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      INICIO
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense" class="header">
@@ -13,57 +5,83 @@
       <ion-title size="large">Inicio</ion-title>
     </ion-toolbar>
     </ion-header>
-
     <ion-body>
-      
-    <ion-card class="cuenta1">
-      <ion-item href="#" class="ion-activated" class="cuentas">
-        <ion-icon name="card-outline" slot="start"></ion-icon>
-        <ion-label>Banco</ion-label>
-      </ion-item>
-      <ion-item class="cuentas">
-        <ion-label>$</ion-label>
-      </ion-item>
-    </ion-card>
-  
-    <ion-card class="cuenta2">
-      <ion-item href="#" class="ion-activated" class="cuentas">
-        <ion-icon name="cash-outline" slot="start"></ion-icon>
-        <ion-label>Efectivo</ion-label>
-      </ion-item>
-      <ion-item class="cuentas">
-        <ion-label>$</ion-label>
-      </ion-item>
-    </ion-card>
-    <br>
-    <br>
-    <ion-subtitle size="medium" class="mov">Últimos movimientos</ion-subtitle>
-    <br>
+      <div class="cuentas">
+        <ion-card class="cuentas1">
+          <ion-item href="#" class="ion-activated" class="">
+            <ion-icon name="card-outline" slot="start"></ion-icon>
+            <ion-label>Banco</ion-label>
+          </ion-item>
+          <ion-item class="">
+            <ion-label>$</ion-label>
+          </ion-item>
+        </ion-card>
+        <ion-card class="cuentas1">
+          <ion-item href="#" class="ion-activated" class="">
+            <ion-icon name="cash-outline" slot="start"></ion-icon>
+            <ion-label>Efectivo</ion-label>
+          </ion-item>
+          <ion-item class="">
+            <ion-label>$</ion-label>
+          </ion-item>
+        </ion-card>
+      </div>
     <ion-card>
-      <ion-list>
-      <ion-item href="#" class="ion-activated">
-        <ion-label>Item 1</ion-label>
-      </ion-item>
-      <ion-item href="#" class="ion-activated">
-        <ion-label>Item 2</ion-label>
-      </ion-item>
-      <ion-item href="#" class="ion-activated">
-        <ion-label>Item 3</ion-label>
-      </ion-item>
-      <ion-item href="#" class="ion-activated" class="verm">
-        <ion-label>Ver más</ion-label>
-        <ion-icon name="caret-forward-outline" class="verm"></ion-icon>
-      </ion-item>
-    </ion-list>
-  </ion-card>
-
-    <ion-content>
-        <ion-fab vertical="top" horizontal="end" slot="fixed">
-          <ion-fab-button>
-            <ion-icon name="add"></ion-icon>
-          </ion-fab-button>
-        </ion-fab>
-  </ion-content>
+      <ion-card-header>
+        <ion-card-title>Ultimos movimientos</ion-card-title>
+        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+            </ion-thumbnail>
+            <ion-label>Hamburguesa</ion-label>
+            <ion-label>$1.200</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+            </ion-thumbnail>
+            <ion-label>Birra</ion-label>
+            <ion-label>$600</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+            </ion-thumbnail>
+            <ion-label>Estacionamiento</ion-label>
+            <ion-label>$400</ion-label>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-thumbnail slot="start">
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+            </ion-thumbnail>
+            <ion-label>Nafta</ion-label>
+            <ion-label>$5000</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    <ion-button fill="clear">Ver mas</ion-button>
+    </ion-card>
+    <ion-card>
+      <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+      <ion-card-header>
+        <ion-card-title>Saldo</ion-card-title>
+        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        Here's a small text description for the card content. Nothing more, nothing less.
+      </ion-card-content>
+    </ion-card>
+    <div class="add-div">
+      <ion-fab vertical="top" horizontal="end" slot="fixed" class="agregar">
+        <ion-fab-button>
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </div>
 </ion-body>
 </ion-content>
 

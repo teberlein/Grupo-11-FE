@@ -2,28 +2,20 @@ ion-title {
     left: 8px;
 }
 
-.headeer {
-    background-color:gainsboro;
-
+.header {
+    margin-top: 3vh;
 }
 
-.cuenta1 {
+.cuentas {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.cuentas1 {
     border-radius: 10px;
-    width: 220px;
+    width: 45vw;
     color: #fff;
     height: 95px;
-    margin-top: 20px;
-    margin-left: 20px;
-    
-}
-
-.cuenta2{
-    border-radius: 10px;
-    width: 220px;
-    height: 95px;
-    margin-top: -105px;
-    margin-left: 260px;
-
 }
 
 
@@ -45,3 +37,12 @@ ion-fab{
 
 }
 
+.add-div {
+    position:relative;
+}
+
+.agregar {
+    position: fixed;
+    right: 0;
+    top: 85%;
+}
