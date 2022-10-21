@@ -38,15 +38,32 @@ ion-fab{
 }
 
 .add-div {
-    position:relative;
+    position:static;
 }
 
 .agregar {
     position: fixed;
     right: 5vw;
-    top: 79vh;
+    bottom: 1.5vh;
+}
+
+.iconos-cat {
+    width: 4vh;
+    margin-right: 2vw;
+    position: relative;
+    
 }
 
 .pesos {
+    position:absolute;
+}
+
+.simbolop {
+    position: relative;
     
+}
+
+.gastos {
+    width: 1vh;
+    margin: 2vh;
 }
