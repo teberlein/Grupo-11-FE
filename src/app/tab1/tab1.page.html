@@ -88,6 +88,86 @@
         Here's a small text description for the card content. Nothing more, nothing less.
       </ion-card-content>
     </ion-card>
+
+    <ion-content class="ion-padding">
+      <ion-button id="open-modal" expand="block">Open</ion-button>
+      <p>{{ message }}</p>
+      <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-button (click)="cancel()">Cancel</ion-button>
+              </ion-buttons>
+              <ion-buttons slot="end">
+                <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content class="ion-padding">
+            <ion-item color="light">
+              <ion-segment color="light" value="light">
+                <ion-segment-button value="light">
+                  <ion-label>Ingreso</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="segment">
+                  <ion-label>Egreso</ion-label>
+                </ion-segment-button>
+              </ion-segment>
+            </ion-item>
+            <ion-item color="light">
+              <ion-label>ARS</ion-label>
+              <ion-input color="danger" placeholder="Danger input" placeholder=""></ion-input>
+            </ion-item>
+            <ion-list>
+              <ion-list-header>General</ion-list-header>
+              <ion-item>
+                <ion-label>Cuenta</ion-label>
+                <ion-select placeholder="Seleccione">
+                  <ion-select-option >Efectivo</ion-select-option>
+                  <ion-select-option >Banco Galicia</ion-select-option>
+                  <ion-select-option >Mercado Pago</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label>Categoría</ion-label>
+                <ion-select placeholder="Seleccione">
+                  <ion-select-option >Comida y bebida</ion-select-option>
+                  <ion-select-option >Compras</ion-select-option>
+                  <ion-select-option >Vivienda</ion-select-option>
+                  <ion-select-option >Transporte</ion-select-option>
+                  <ion-select-option >Vida y entretenimiento</ion-select-option>
+                  <ion-select-option >Comunicaciones, PC</ion-select-option>
+                  <ion-select-option >Gastos financieros</ion-select-option>
+                  <ion-select-option >Inversiones</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label>Fecha y hora</ion-label>
+                <ion-datetime-button datetime="datetime"></ion-datetime-button>
+                <ion-modal [keepContentsMounted]="true">
+                  <ng-template>
+                    <ion-datetime id="datetime"></ion-datetime>
+                  </ng-template>
+                </ion-modal>
+              </ion-item>
+            </ion-list>  
+            <ion-list>
+              <ion-list-header>Mas detalles</ion-list-header>
+              <ion-item>
+                <ion-label>Nota</ion-label>
+                <ion-input placeholder=""></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Beneficiario</ion-label>
+                <ion-input placeholder=""></ion-input>
+              </ion-item>
+              <ion-button color="dark" expand="full" fill="outline">Adjuntar foto</ion-button>
+            </ion-list>  
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+    </ion-content>
     <div class="add-div">
       <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="agregar">
         <ion-fab-button [routerLink]="['/movimientos']">
@@ -97,7 +177,3 @@
     </div>
 </ion-body>
 </ion-content>
-
-
-
-
