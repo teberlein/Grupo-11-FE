@@ -26,4 +26,16 @@ export class MovimientosService {
   //  return this.http.get<movimiento>(this.URL);
   //}
 
+  async addMovimientos(nuevo_movimiento) {
+    const res = await fetch('http://localhost:8080/movimiento', {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json'
+      }, 
+      body: JSON.stringify(nuevo_movimiento)
+    });
+    const resjson = (await res).json()
+    return resjson
+  }
+
 }

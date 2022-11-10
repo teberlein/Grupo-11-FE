@@ -11,19 +11,19 @@
     <ion-toolbar>
       <ion-title size="large">Inicio</ion-title>
     </ion-toolbar>
-    </ion-header>
+  </ion-header>
 
-      <div class="cuentas">
-        <ion-card class="cuentas1">
-          <ion-item href="#" class="ion-activated" class="">
-            <ion-icon name="card-outline" slot="start"></ion-icon>
-            <ion-label>Banco</ion-label>
-          </ion-item>
-          <ion-item class="">
-            <ion-label>$</ion-label>
-          </ion-item>
-        </ion-card>
-        <ion-card class="cuentas1">
+  <div class="cuentas">
+    <ion-card class="cuentas1" *ngFor="let cuenta of cuentas">
+        <ion-item href="#" class="ion-activated">
+          <ion-icon name="card-outline" slot="start"></ion-icon>
+          <ion-label>{{cuenta.nombre}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>$ {{cuenta.saldo}}</ion-label>
+        </ion-item>
+    </ion-card>
+        <!-- <ion-card class="cuentas1">
           <ion-item href="#" class="ion-activated" class="">
             <ion-icon name="cash-outline" slot="start"></ion-icon>
             <ion-label>Efectivo</ion-label>
@@ -31,8 +31,8 @@
           <ion-item class="">
             <ion-label>$</ion-label>
           </ion-item>
-        </ion-card>
-      </div>
+        </ion-card> -->
+  </div>
     <ion-card>
       <ion-card-header>
         <ion-card-title>Ultimos movimientos</ion-card-title>
@@ -49,8 +49,8 @@
           </div>
             <ion-label>{{movimiento.monto}}</ion-label>
           </ion-item>
-          
         </ion-list>
+    
       </ion-card-content>
     <ion-button fill="clear">Ver mas</ion-button>
     </ion-card>
@@ -98,7 +98,7 @@
              <!--Input monto de plata-->
             <ion-item color="light">
               <ion-label>ARS $</ion-label>
-              <ion-input Type="number"color="" placeholder="Danger input" placeholder=""></ion-input>
+              <ion-input Type="number"color="" placeholder="Danger input" placeholder="" (change)="nuevo_movimiento.monto=$event.target.value"></ion-input>
             </ion-item>
             <ion-list>
               <ion-list-header>General</ion-list-header>
@@ -149,6 +149,7 @@
                 <ion-input placeholder=""></ion-input>
               </ion-item>
               <ion-button color="dark" expand="full" fill="outline">Adjuntar foto</ion-button>
+              <h1>{{nuevo_movimiento.monto}}</h1>
             </ion-list>  
           </ion-content>
         </ng-template>
