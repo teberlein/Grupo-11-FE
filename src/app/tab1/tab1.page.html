@@ -67,7 +67,9 @@
 
        <!--Pantalla de agregar movimiento-->
     <div class="add-div">
-      <ion-button id="open-modal" expand="block" class="agregar">+</ion-button>
+      <ion-fab>
+      <ion-fab-button id="open-modal" expand="block" class="agregar"><ion-icon name="add"></ion-icon></ion-fab-button>
+      </ion-fab>
       <p>{{ message }}</p>
       <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
         <ng-template>

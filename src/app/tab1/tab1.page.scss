@@ -46,8 +46,10 @@ ion-fab{
     position: fixed;
     right: 5vw;
     bottom: 1.5vh;
-    font-size: 30px;
-    font-weight: 600;
+    height: 50px;
+    width: 50px;
+    margin-bottom: 25px;
+    border-radius: 50%;
 }
 
 .iconos-cat {
