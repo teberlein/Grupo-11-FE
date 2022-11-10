@@ -39,12 +39,15 @@ ion-fab{
 
 .add-div {
     position:static;
+    border-radius: 50%;
 }
 
 .agregar {
     position: fixed;
     right: 5vw;
     bottom: 1.5vh;
+    font-size: 30px;
+    font-weight: 600;
 }
 
 .iconos-cat {

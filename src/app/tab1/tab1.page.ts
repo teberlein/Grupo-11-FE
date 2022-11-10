@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
 import { ViewChild } from '@angular/core';
-import { IonModal } from '@ionic/angular';
+import { AlertController, IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
+import { MovimientosService } from '../core/services/movimientos.service';
 
 @Component({
   selector: 'app-tab1',
@@ -11,11 +12,26 @@ import { OverlayEventDetail } from '@ionic/core/components';
 })
 export class Tab1Page {
 
-  constructor() {}
+  constructor(private movimientoService: MovimientosService,
+    public alertController: AlertController, movimientosService: MovimientosService) {}
+
+    searchTerm: string;
+    movimientos = []
+
+    ngOnInit(){
+      this.getMovimientos()
+    }
+
+    //todosLosMovimientos = []
+    async getMovimientos() {
+      this.movimientos = await this.movimientoService.getMovimientos()
+      console.table(this.movimientos);
+      //this.todosLosMovimientos = Array.from(this.movimientos)
+    }
 
   @ViewChild(IonModal) modal: IonModal;
 
-  message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
+  message = '';
   name: string;
 
   cancel() {
