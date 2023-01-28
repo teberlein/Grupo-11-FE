@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonSelect,} from '@ionic/angular';
+
 
 import { Tab1Component } from './tab1.component';
 

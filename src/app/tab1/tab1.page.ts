@@ -5,6 +5,7 @@ import { AlertController, IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { MovimientosService } from '../core/services/movimientos.service';
 import { CuentasService } from '../core/services/cuentas.service';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonSelect,} from '@ionic/angular';
 
 
 @Component({
@@ -36,6 +37,8 @@ export class Tab1Page {
       this.cuentas = await this.cuentaService.getCuentas()
       console.table(this.cuentas);
     }
+
+
 
   @ViewChild(IonModal) modal: IonModal;
 

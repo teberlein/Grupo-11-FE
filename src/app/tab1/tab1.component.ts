@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonSelect,} from '@ionic/angular';
+
 
 @Component({
   selector: 'app-tab1',
