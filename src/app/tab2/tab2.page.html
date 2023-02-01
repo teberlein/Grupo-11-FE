@@ -44,5 +44,20 @@
         Here's a small text description for the card content. Nothing more, nothing less.
       </ion-card-content>
   </ion-card>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="primary" class="">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button expand="block" (click)="modalMovimiento()" color="primary" data-desc="Añadir movimiento">
+        <ion-icon name="receipt-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button expand="block" (click)="modalCuenta()" color="primary" data-desc="Añadir cuenta">
+        <ion-icon name="card-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
   
+
 </ion-content>

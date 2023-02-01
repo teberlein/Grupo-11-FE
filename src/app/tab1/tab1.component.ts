@@ -16,26 +16,18 @@ export class Tab1Component implements OnInit {
 
   ngOnInit() {}
 
-}
+   // @ViewChild(IonModal) modal: IonModal;
 
-@Component({
-  selector: 'app-tab1',
-  templateUrl: 'example.component.html',
-})
+  // message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
+  // name: string;
 
-export class ExampleComponent {
-  @ViewChild(IonModal) modal: IonModal;
+  // cancel() {
+  //   this.modal.dismiss(null, 'cancel');
+  // }
 
-  message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
-  name: string;
-
-  cancel() {
-    this.modal.dismiss(null, 'cancel');
-  }
-
-  confirm() {
-    this.modal.dismiss(this.name, 'confirm');
-  }
+  // confirm() {
+  //   this.modal.dismiss(this.name, 'confirm');
+  // }
 
 //  onWillDismiss(event: Event) {
 //    const ev = event as CustomEvent<OverlayEventDetail<string>>;
@@ -43,4 +35,5 @@ export class ExampleComponent {
 //      this.message = `Hello, ${ev.detail.data}!`;
 //    }
 //  }
+
 }

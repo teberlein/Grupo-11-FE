@@ -7,6 +7,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  
   <ion-header collapse="condense" class="header">
     <ion-toolbar>
       <ion-title size="large">Inicio</ion-title>
@@ -14,8 +15,8 @@
   </ion-header>
 
   <div class="cuentas">
-    <ion-card class="cuentas1" *ngFor="let cuenta of cuentas">
-        <ion-item href="#" class="ion-activated">
+    <ion-card class="cuentas--tarjeta" *ngFor="let cuenta of cuentas">
+        <ion-item>
           <ion-icon name="card-outline" slot="start"></ion-icon>
           <ion-label>{{cuenta.nombre}}</ion-label>
         </ion-item>
@@ -23,27 +24,8 @@
           <ion-label>$ {{cuenta.saldo}}</ion-label>
         </ion-item>
     </ion-card>
-
-    <!-- <ion-card class="cuentas1">
-      <ion-item href="#" class="ion-activated">
-        <ion-icon name="card-outline" slot="start"></ion-icon>
-        <ion-label>Banco</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>$ </ion-label>
-      </ion-item>
-  </ion-card>
-
-        <ion-card class="cuentas1">
-          <ion-item href="#" class="ion-activated" class="">
-            <ion-icon name="cash-outline" slot="start"></ion-icon>
-            <ion-label>Efectivo</ion-label>
-          </ion-item>
-          <ion-item class="">
-            <ion-label>$</ion-label>
-          </ion-item>
-        </ion-card> -->
   </div>
+
     <ion-card>
       <ion-card-header>
         <ion-card-title>Ultimos movimientos</ion-card-title>
@@ -63,8 +45,9 @@
         </ion-list>
     
       </ion-card-content>
-    <ion-button fill="clear">Ver mas</ion-button>
+      <ion-button fill="clear">Ver mas</ion-button>
     </ion-card>
+
     <ion-card>
       <img alt="Grafico resumen" src="assets/img/Grafico1.jpeg">
       <ion-card-header>
@@ -77,113 +60,32 @@
     </ion-card>
 
        <!--Pantalla de agregar movimiento-->
-    <div class="add-div">
+    <!-- <div class="add-div">
 
       <ion-fab>
       <ion-fab-button id="open-modal" expand="block" class="agregar">
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
+      </ion-fab> -->
+
+      <!--Botón agregar-->
+      <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+        <ion-fab-button color="primary" class="">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="top">
+          <ion-fab-button expand="block" (click)="modalMovimiento()" color="primary" data-desc="Añadir movimiento">
+            <ion-icon name="receipt-outline"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button expand="block" (click)="modalCuenta()" color="primary" data-desc="Añadir cuenta">
+            <ion-icon name="card-outline"></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
       </ion-fab>
-      
-      <!-- Definición del modal para agregar movimiento -->
-      <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
-        <ng-template>
-          <ion-header>
-            <ion-toolbar>
-              <ion-buttons slot="start">
-                <ion-button (click)="cancel()">Cancel</ion-button>
-              </ion-buttons>
-              <ion-buttons slot="end">
-                <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
-              </ion-buttons>
-            </ion-toolbar>
-          </ion-header>
-          <ion-content class="ion-padding">
 
-            <!--Selector ingreso/egreso-->
-            <ion-item color="light">
-              <ion-segment color="light" value="light" (ionChange)="nuevo_movimiento.ingreso_egreso=$event.target.value">
-                <ion-segment-button value="light" value="true">
-                  <ion-label>Ingreso</ion-label>
-                </ion-segment-button>
-                <ion-segment-button value="segment" value="false">
-                  <ion-label>Egreso</ion-label>
-                </ion-segment-button>
-              </ion-segment>
-            </ion-item>
 
-             <!--Input monto de plata-->
-            <ion-item color="light">
-              <ion-label>ARS $</ion-label>
-              <ion-input Type="number"color="" placeholder="Danger input" placeholder="" (change)="nuevo_movimiento.monto=$event.target.value"></ion-input>
-            </ion-item>
-            <ion-list>
-              <ion-list-header>General</ion-list-header>
-              
-              <!--Input nombre movimiento-->
-            <ion-item>
-              <ion-label>Nombre</ion-label>
-              <ion-input Type="text"color="" placeholder="Danger input" placeholder="" (change)="nuevo_movimiento.nombre=$event.target.value" class="text--input"></ion-input>
-            </ion-item>
+    <!-- </div> -->
 
-              <!--Selector de cuenta-->
-              <ion-item>
-                <ion-label>Cuenta</ion-label>
-                <ion-select placeholder="Seleccione" (ionChange)="nuevo_movimiento.cuenta=$event.target.value">
-                  <ion-select-option value="Efectivo">Efectivo</ion-select-option>
-                  <ion-select-option value="Banco galicia">Banco Galicia</ion-select-option>
-                  <ion-select-option value="Mercado Pago">Mercado Pago</ion-select-option>
-                </ion-select>
-              </ion-item>
-
-               <!--Selector de categoria-->
-              <ion-item>
-                <ion-label>Categoría</ion-label>
-                <ion-select placeholder="Seleccione" (ionChange)="nuevo_movimiento.categoria=$event.target.value">
-                  <ion-select-option value="Comida y bebida">Comida y bebida</ion-select-option>
-                  <ion-select-option value="Compras">Compras</ion-select-option>
-                  <ion-select-option value="Vivienda">Vivienda</ion-select-option>
-                  <ion-select-option value="Transporte">Transporte</ion-select-option>
-                  <ion-select-option value="Vida y entretenimiento">Vida y entretenimiento</ion-select-option>
-                  <ion-select-option value="Comunicaciones">Comunicaciones, PC</ion-select-option>
-                  <ion-select-option value="Gastos financieros">Gastos financieros</ion-select-option>
-                  <ion-select-option value="Inversiones">Inversiones</ion-select-option>
-                </ion-select>
-              </ion-item>
-              <!--Boton de fecha y hora-->
-              <ion-item>
-                <ion-label>Fecha y hora</ion-label>
-                <ion-datetime-button datetime="datetime"></ion-datetime-button>
-                <ion-modal [keepContentsMounted]="true">
-                  <ng-template>
-                    <ion-datetime id="datetime"></ion-datetime>
-                  </ng-template>
-                </ion-modal>
-              </ion-item>
-            </ion-list>  
-            <ion-list>
-              <ion-list-header>Mas detalles</ion-list-header>
-               <!--Descripcion del movimiento-->
-              <ion-item>
-                <ion-label>Nota</ion-label>
-                <ion-input placeholder="" type="text" class="text--input"></ion-input>
-              </ion-item>
-              <!--Beneficiario-->
-              <ion-item>
-                <ion-label>Beneficiario</ion-label>
-                <ion-input placeholder="" type="text" class="text--input"></ion-input>
-              </ion-item>
-              <h1>ingreso: {{nuevo_movimiento.ingreso_egreso}}</h1>
-              <h1>monto: ${{nuevo_movimiento.monto}}</h1>
-              <h1>nombre: {{nuevo_movimiento.nombre}}</h1>
-              <h1>cuenta: {{nuevo_movimiento.cuenta}}</h1>
-              <h1>categoria: {{nuevo_movimiento.categoria}}</h1>
-
-            </ion-list>  
-          </ion-content>
-        </ng-template>
-      </ion-modal>
-    </div>
       <!--Boton flotante-->
     <!-- <div class="add-div">
       <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="agregar">
