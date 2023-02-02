@@ -32,6 +32,7 @@ export class ModalMovimientoComponent {
     searchTerm: string;
     movimientos = []
     cuentas = []
+    cuentaModificar = []
 
     ngOnInit(){
       this.getMovimientos()
@@ -48,12 +49,29 @@ export class ModalMovimientoComponent {
         console.table(this.cuentas);
       }
 
+      actualizarSaldo() {
+        if(this.nuevo_movimiento.ingreso == true)
+        {
+          this.cuenta.saldo += this.nuevo_movimiento.monto
+          console.log(this.nuevo_movimiento.monto);
+        }
+        if (this.nuevo_movimiento.ingreso == false)
+        {
+          this.cuenta.saldo -= this.nuevo_movimiento.monto
+          console.log(this.nuevo_movimiento.monto);
+        }
+      }
+
   cancel_movimiento() {
     return this.modalCtrl.dismiss(null, 'cancel');
   }
 
   async confirm_movimiento() {
+    this.cuenta = await this.cuentaService.getCuentaById(this.cuenta.id)
+    this.actualizarSaldo()
     await this.movimientoService.addMovimientos(this.nuevo_movimiento)
+    await this.cuentaService.addCuentas(this.cuenta)
+    console.log(this.cuenta)
     this.modalCtrl.dismiss(null,'confirm');
   }
 
@@ -62,6 +80,12 @@ export class ModalMovimientoComponent {
     categoria: '',
     cuenta: '',
     monto: 0,
-    ingreso_egreso: false,
+    ingreso: false,
+  }
+
+  cuenta = {
+    id: 0,
+    nombre: '',
+    saldo: 0,
   }
 }
