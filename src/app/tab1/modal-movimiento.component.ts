@@ -50,15 +50,13 @@ export class ModalMovimientoComponent {
       }
 
       actualizarSaldo() {
-        if(this.nuevo_movimiento.ingreso == true)
+        if(this.nuevo_movimiento.ingreso_egreso == 'true')
         {
-          this.cuenta.saldo += this.nuevo_movimiento.monto
-          console.log(this.nuevo_movimiento.monto);
+          this.cuenta.saldo = Number(this.nuevo_movimiento.monto) + Number(this.cuenta.saldo)
         }
-        if (this.nuevo_movimiento.ingreso == false)
+        else if(this.nuevo_movimiento.ingreso_egreso == 'false')
         {
-          this.cuenta.saldo -= this.nuevo_movimiento.monto
-          console.log(this.nuevo_movimiento.monto);
+          this.cuenta.saldo = Number(this.cuenta.saldo) - Number(this.nuevo_movimiento.monto)
         }
       }
 
@@ -71,7 +69,6 @@ export class ModalMovimientoComponent {
     this.actualizarSaldo()
     await this.movimientoService.addMovimientos(this.nuevo_movimiento)
     await this.cuentaService.addCuentas(this.cuenta)
-    console.log(this.cuenta)
     this.modalCtrl.dismiss(null,'confirm');
   }
 
@@ -80,7 +77,7 @@ export class ModalMovimientoComponent {
     categoria: '',
     cuenta: '',
     monto: 0,
-    ingreso: false,
+    ingreso_egreso: '',
   }
 
   cuenta = {

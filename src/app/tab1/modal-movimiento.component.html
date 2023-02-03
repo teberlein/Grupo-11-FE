@@ -12,7 +12,7 @@
 
   <!--Selector ingreso/egreso-->
   <ion-item color="light">
-    <ion-segment color="light" value="light" (ionChange)="nuevo_movimiento.ingreso=$event.target.value" >
+    <ion-segment color="light" value="light" (ionChange)="nuevo_movimiento.ingreso_egreso=$event.target.value" >
       <ion-segment-button value="light" value="true">
         <ion-label>Ingreso</ion-label>
       </ion-segment-button>
@@ -85,7 +85,7 @@
       <ion-input placeholder="" type="text" class="text--input"></ion-input>
     </ion-item>
 
-    <h3>ingreso: {{nuevo_movimiento.ingreso}}</h3>
+    <h3>ingreso: {{nuevo_movimiento.ingreso_egreso}}</h3>
     <h3>monto: ${{nuevo_movimiento.monto}}</h3>
     <h3>nombre: {{nuevo_movimiento.nombre}}</h3>
     <h3>cuenta: {{nuevo_movimiento.cuenta}}</h3>
