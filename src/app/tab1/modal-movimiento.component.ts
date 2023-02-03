@@ -85,4 +85,5 @@ export class ModalMovimientoComponent {
     nombre: '',
     saldo: 0,
   }
+
 }
