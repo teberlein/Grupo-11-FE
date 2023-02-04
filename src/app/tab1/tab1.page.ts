@@ -17,16 +17,20 @@ export class Tab1Page {
 
   searchTerm: string;
     movimientos = []
+    cincoMovimientos = []
     cuentas = []
 
   ngOnInit(){
     this.getMovimientos()
     this.getCuentas();
+    console.table(this.movimientoService.getMovimientoPorId(133))
   }
 
   async getMovimientos() {
     this.movimientos = await this.movimientoService.getMovimientos()
-    console.table(this.movimientos);
+    this.movimientos = this.movimientos.reverse()
+    this.cincoMovimientos = this.movimientos.slice(0,5)
+    console.table(this.cincoMovimientos);
   }
 
   async getCuentas() {

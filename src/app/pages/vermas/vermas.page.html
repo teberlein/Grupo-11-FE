@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()"><ion-icon name="chevron-back-outline"></ion-icon>Volver</ion-button>
+    </ion-buttons>
+    <ion-title>Movimientos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Ultimos movimientos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let movimiento of movimientos">
+          <ion-icon name="card-outline"></ion-icon>
+          <ion-label class="gasto">{{movimiento.nombre}}</ion-label>
+          <div class="simbolop">
+          <ion-item>
+           <ion-label class="pesos">$</ion-label>
+          </ion-item>
+        </div>
+          <ion-label>{{movimiento.monto}}</ion-label>
+        </ion-item>
+      </ion-list>
+  
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()"><ion-icon name="chevron-back-outline"></ion-icon>Volver</ion-button>
+    </ion-buttons>
+    <ion-title>Cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        {{cuenta.nombre}}
+      </ion-card-title>
+      <ion-card-title>$ {{cuenta.saldo}}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        Últimos movimientos de la cuenta {{cuenta.nombre}}
+      </ion-card-title>
+      <ion-card-subtitle></ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let movimiento of movimientos">
+          <ion-label class="gasto">{{movimiento.nombre}}</ion-label>
+          <div class="simbolop">
+            <ion-item>
+              <ion-label class="pesos">$</ion-label>
+            </ion-item>
+          </div>
+          <ion-label>{{movimiento.monto}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -15,7 +15,7 @@
   </ion-header>
 
   <div class="cuentas">
-    <ion-card class="cuentas--tarjeta" *ngFor="let cuenta of cuentas">
+    <ion-card class="cuentas--tarjeta" *ngFor="let cuenta of cuentas" [routerLink]="['/cuenta',cuenta.id]">
         <ion-item>
           <ion-icon name="card-outline" slot="start"></ion-icon>
           <ion-label>{{cuenta.nombre}}</ion-label>
@@ -31,9 +31,10 @@
         <ion-card-title>Ultimos movimientos</ion-card-title>
       </ion-card-header>
       
+      
       <ion-card-content>
         <ion-list>
-          <ion-item *ngFor="let movimiento of movimientos">
+          <ion-item *ngFor="let movimiento of cincoMovimientos" [routerLink]="['/movimientos',movimiento.id]">
               <ion-icon name="logo-usd" class="iconos-cat"></ion-icon>
             <ion-label class="gasto">{{movimiento.nombre}}</ion-label>
             <div class="simbolop">
@@ -46,7 +47,7 @@
         </ion-list>
       </ion-card-content>
 
-      <ion-button fill="clear">Ver mas</ion-button>
+      <ion-button fill="clear" [routerLink]="['/vermas']" routerLinkActive="router-link-active" >Ver mas</ion-button>
     </ion-card>
 
     <ion-card>
