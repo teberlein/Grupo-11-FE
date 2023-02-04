@@ -13,4 +13,10 @@
 <h3>Usaste la cuenta: {{cuenta.nombre}}</h3>
 <h3>Categoría: {{movimiento.categoria}}</h3>
 
+<br><br>
+
+<ion-button class="borrar" (click)="presentActionSheet()"><code *ngIf="result"> {{ result }} </code>
+  <ion-icon name="trash-outline"></ion-icon>
+  Borrar movimiento
+</ion-button>
 </ion-content>
