@@ -11,7 +11,15 @@ import { MovimientosService } from 'src/app/core/services/movimientos.service';
 })
 export class MovimientosPage implements OnInit {
 
-  movimiento = {};
+  movimiento = {
+    id:0,
+    cuenta:'',
+    categoria:'',
+    nombre:'',
+    monto:0,
+    ingreso_egreso:false,
+  };
+  cuenta = {};
 
   constructor(
     private ar: ActivatedRoute,
@@ -22,6 +30,7 @@ export class MovimientosPage implements OnInit {
     ar.params.subscribe(async param =>{
       console.log(param["id"]);
       this.movimiento = await this.movimientosService.getMovimientoPorId(param["id"])
+      this.cuenta = await this.cuentasService.getCuentaById(Number(this.movimiento.cuenta))
       console.table(this.movimiento)
     })
   }
@@ -31,6 +40,10 @@ export class MovimientosPage implements OnInit {
 
   volver() {
     this.navCtrl.navigateBack("")
+  }
+
+  volverAVerMas() {
+    this.navCtrl.navigateBack("/vermas")
   }
 
 }

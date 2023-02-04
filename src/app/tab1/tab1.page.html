@@ -34,15 +34,10 @@
       
       <ion-card-content>
         <ion-list>
-          <ion-item *ngFor="let movimiento of cincoMovimientos" [routerLink]="['/movimientos',movimiento.id]">
-              <ion-icon name="logo-usd" class="iconos-cat"></ion-icon>
+          <ion-item *ngFor="let movimiento of cincoMovimientos" [routerLink]="['/movimientos',movimiento.id]" [class.ingreso] = "movimiento.ingreso_egreso == true" [class.egreso] = "movimiento.ingreso_egreso == false">
+              <ion-icon name="logo-usd" [class.icono-ingreso] = "movimiento.ingreso_egreso == true" [class.icono-egreso] = "movimiento.ingreso_egreso == false"></ion-icon>
             <ion-label class="gasto">{{movimiento.nombre}}</ion-label>
-            <div class="simbolop">
-            <ion-item>
-             <ion-label class="pesos">$</ion-label>
-            </ion-item>
-          </div>
-            <ion-label>{{movimiento.monto}}</ion-label>
+            <ion-label>$ {{movimiento.monto}}</ion-label>
           </ion-item>
         </ion-list>
       </ion-card-content>
@@ -61,15 +56,6 @@
       </ion-card-content>
     </ion-card>
 
-       <!--Pantalla de agregar movimiento-->
-    <!-- <div class="add-div">
-
-      <ion-fab>
-      <ion-fab-button id="open-modal" expand="block" class="agregar">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-      </ion-fab> -->
-
       <!--Botón agregar-->
       <ion-fab horizontal="end" vertical="bottom" slot="fixed">
         <ion-fab-button color="primary" class="">
@@ -84,16 +70,4 @@
           </ion-fab-button>
         </ion-fab-list>
       </ion-fab>
-
-
-    <!-- </div> -->
-
-      <!--Boton flotante-->
-    <!-- <div class="add-div">
-      <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="agregar">
-        <ion-fab-button [routerLink]="['/movimientos']">
-          <ion-icon name="add-outline"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-    </div> -->
 </ion-content>

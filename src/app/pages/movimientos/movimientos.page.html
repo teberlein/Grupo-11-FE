@@ -1,9 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>vermas</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()"><ion-icon name="chevron-back-outline"></ion-icon>Volver</ion-button>
+    </ion-buttons>
+    <ion-title>Movimiento</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+<h1>{{movimiento.nombre}}</h1>
+<h1>$ {{movimiento.monto}}</h1>
+<h3>Usaste la cuenta: {{cuenta.nombre}}</h3>
+<h3>Categoría: {{movimiento.categoria}}</h3>
 
 </ion-content>

@@ -31,59 +31,9 @@ ion-title {
     flex-shrink: 0;
 }
 
-
-ion-subtitle {
-    width: 80px;
-    top: 8px;
-    margin-left: 20px;
-}
-
-ion-fab{
-    width: 56px;
-    height: 56px;
-    margin-top: 15%;
-    margin-left: 100%;
-}
-
 .verm {
     color: #3880FF;
 
-}
-
-.add-div {
-    position:static;
-    border-radius: 50%;
-}
-
-.agregar {
-    position: fixed;
-    right: 5vw;
-    bottom: 1.5vh;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-}
-
-.iconos-cat {
-    width: 4vh;
-    margin-right: 2vw;
-    position: relative;
-    color: green;
-    
-}
-
-.pesos {
-    position:absolute;
-}
-
-.simbolop {
-    position: relative;
-    
-}
-
-.gastos {
-    width: 1vh;
-    margin: 2vh;
 }
 
 .text--input {
@@ -106,3 +56,25 @@ ion-fab-button[data-desc]::after {
     color: white;
     box-shadow: 0 3px 5px -1px rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12);
   }
+
+  .ingreso {
+    color: green;
+  }
+
+  .egreso {
+    color: red;
+  }
+
+  .icono-ingreso {
+    width: 4vh;
+    margin-right: 2vw;
+    position: relative;
+    color: green;
+}
+
+.icono-egreso {
+    width: 4vh;
+    margin-right: 2vw;
+    position: relative;
+    color: red;
+}
