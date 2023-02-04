@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-vermas',
   templateUrl: './vermas.page.html',
@@ -10,6 +11,6 @@ export class VermasPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
+  }  
 
 }

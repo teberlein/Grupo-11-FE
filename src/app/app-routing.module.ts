@@ -9,10 +9,8 @@ const routes: Routes = [
   {
     path: 'movimientos',
     loadChildren: () => import('./movimientos/movimientos.module').then(m => m.MovimientosModule)
-  },  {
-    path: 'vermas',
-    loadChildren: () => import('./public/pages/vermas/vermas.module').then( m => m.VermasPageModule)
-  }
+  },
+ 
 
 ];
 @NgModule({
