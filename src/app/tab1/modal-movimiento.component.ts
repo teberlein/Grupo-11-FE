@@ -32,7 +32,6 @@ export class ModalMovimientoComponent {
     searchTerm: string;
     movimientos = []
     cuentas = []
-    cuentaModificar = []
 
     ngOnInit(){
       this.getMovimientos()
@@ -41,12 +40,12 @@ export class ModalMovimientoComponent {
 
     async getMovimientos() {
         this.movimientos = await this.movimientoService.getMovimientos()
-        console.table(this.movimientos);
+        // console.table(this.movimientos);
       }
   
       async getCuentas() {
         this.cuentas = await this.cuentaService.getCuentas()
-        console.table(this.cuentas);
+        // console.table(this.cuentas);
       }
 
       actualizarSaldo() {

@@ -13,48 +13,72 @@ import { ActionSheetController } from '@ionic/angular';
 })
 export class MovimientosPage implements OnInit {
 
-  result?: string;
-
-  movimiento = {
-    id:0,
-    cuenta:'',
-    categoria:'',
-    nombre:'',
-    monto:0,
-    ingreso_egreso:false,
-  };
-  cuenta = {};
-
   constructor(
     private ar: ActivatedRoute,
-    private cuentasService: CuentasService,
+    private cuentaService: CuentasService,
     private movimientosService: MovimientosService,
     private navCtrl: NavController,
     private actionSheetCtrl: ActionSheetController,
   ) {
     ar.params.subscribe(async param =>{
-      console.log(param["id"]);
+      // console.log(param["id"]);
       this.movimiento = await this.movimientosService.getMovimientoPorId(param["id"])
-      this.cuenta = await this.cuentasService.getCuentaById(Number(this.movimiento.cuenta))
-      console.table(this.movimiento)
+      this.cuenta = await this.cuentaService.getCuentaById(Number(this.movimiento.cuenta))
+      // console.table(this.cuenta)
+      // console.table(this.movimiento)
     })
+  }
+
+  result?: string;
+
+  movimiento = {
+    id:0,
+    nombre: '',
+    categoria: '',
+    cuenta: '',
+    monto: 0,
+    ingreso_egreso: false,
+  }
+
+  cuenta = {
+    id:0,
+    nombre:'',
+    saldo:0,
   }
 
   ngOnInit() {
   }
 
   volver() {
-    this.navCtrl.navigateBack("")
+    this.actualizarSaldo()
+    // console.log(this.movimiento, this.cuenta)
+    this.navCtrl.back();
   }
 
-  volverAVerMas() {
-    this.navCtrl.navigateBack("/vermas")
+  actualizarSaldo() {
+    if(this.movimiento.ingreso_egreso === false)
+    {
+      this.cuenta.saldo = Number(this.movimiento.monto) + Number(this.cuenta.saldo)
+      // console.log("El saldo es " + this.cuenta.saldo)
+    }
+    else if(this.movimiento.ingreso_egreso === true)
+    {
+      this.cuenta.saldo = Number(this.cuenta.saldo) - Number(this.movimiento.monto)
+      // console.log("El saldo es " + this.cuenta.saldo)
+    }
+  }
+
+  async borrarMovimiento() {
+    await this.movimientosService.borrarMovimiento(this.movimiento.id)
+    this.actualizarSaldo()
+    await this.cuentaService.addCuentas(this.cuenta)
+    this.volver();
   }
 
   async presentActionSheet() {
     const actionSheet = await this.actionSheetCtrl.create({
-      header: '¿Estas seguro?',
-      subHeader: 'Se perdera el registro de esta información',
+      header: '¿Estás seguro?',
+      subHeader: 'Se perderá el registro de esta información y modificará el saldo de la cuenta',
       buttons: [
         {
           text: 'Eliminar',
@@ -77,5 +101,5 @@ export class MovimientosPage implements OnInit {
 
     const result = await actionSheet.onDidDismiss();
     this.result = JSON.stringify(result, null, 2);
-
+    if(result.role === "destructive") await this.borrarMovimiento()
 }}

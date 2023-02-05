@@ -39,4 +39,12 @@ export class MovimientosService {
     return resjson
   }
 
+  async borrarMovimiento(id: number) {
+    const res = await fetch('http://localhost:8080/movimiento/' + id, {
+      method: 'DELETE', 
+    });
+    const resjson = (await res)
+    return resjson
+  }
+
 }

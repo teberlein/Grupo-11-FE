@@ -14,9 +14,11 @@
 <h3>Categoría: {{movimiento.categoria}}</h3>
 
 <br><br>
-
-<ion-button class="borrar" (click)="presentActionSheet()"><code *ngIf="result"> {{ result }} </code>
-  <ion-icon name="trash-outline"></ion-icon>
-  Borrar movimiento
-</ion-button>
+<div class="borrar">
+  <ion-button (click)="presentActionSheet()">
+    <!-- <code *ngIf="result"> {{ result }} </code> -->
+    <ion-icon name="trash-outline"></ion-icon>
+    Borrar movimiento
+  </ion-button>
+</div>
 </ion-content>

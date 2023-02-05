@@ -23,19 +23,25 @@ export class Tab1Page {
   ngOnInit(){
     this.getMovimientos()
     this.getCuentas();
-    console.table(this.movimientoService.getMovimientoPorId(133))
+  }
+
+  ionViewWillEnter (){
+    this.movimientos = []
+    this.cuentas = []
+    this.getMovimientos()
+    this.getCuentas();
   }
 
   async getMovimientos() {
     this.movimientos = await this.movimientoService.getMovimientos()
     this.movimientos = this.movimientos.reverse()
     this.cincoMovimientos = this.movimientos.slice(0,5)
-    console.table(this.cincoMovimientos);
+    // console.table(this.cincoMovimientos);
   }
 
   async getCuentas() {
     this.cuentas = await this.cuentaService.getCuentas()
-    console.table(this.cuentas);
+    // console.table(this.cuentas);
   }
 
   async modalMovimiento() {

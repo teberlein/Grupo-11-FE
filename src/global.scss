@@ -24,3 +24,25 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.ingreso {
+    color: green;
+  }
+
+  .egreso {
+    color: red;
+  }
+
+  .icono-ingreso {
+    width: 4vh;
+    margin-right: 2vw;
+    position: relative;
+    color: green;
+}
+
+.icono-egreso {
+    width: 4vh;
+    margin-right: 2vw;
+    position: relative;
+    color: red;
+}
