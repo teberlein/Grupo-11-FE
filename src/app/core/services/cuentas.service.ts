@@ -36,4 +36,12 @@ export class CuentasService {
     const resjson = (await res).json()
     return resjson
   }
+
+  async borrarCuenta(id: number) {
+    const res = await fetch('http://localhost:8080/cuenta/' + id, {
+      method: 'DELETE', 
+    });
+    const resjson = (await res)
+    return resjson
+  }
 }

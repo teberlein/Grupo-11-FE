@@ -8,8 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { ModalMovimientoComponent } from './tab2/modal-movimiento.component';
-import { ModalCuentaComponent } from './tab2/modal-cuenta.component';
+import { ModalMovimientoComponent } from './components/modal-movimiento/modal-movimiento.component';
+import { ModalCuentaComponent } from './components/modal-cuenta/modal-cuenta.component';
+
 
 @NgModule({
   declarations: [AppComponent, ModalMovimientoComponent, ModalCuentaComponent],

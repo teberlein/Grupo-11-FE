@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
 import { AlertController, ModalController } from '@ionic/angular';
-import { CuentasService } from '../core/services/cuentas.service';
-import { MovimientosService } from '../core/services/movimientos.service';
+import { CuentasService } from 'src/app/core/services/cuentas.service';
+import { MovimientosService } from 'src/app/core/services/movimientos.service';
+
 
 
 @Component({

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
-import { ModalMovimientoComponent } from './modal-movimiento.component';
-import { ModalCuentaComponent } from './modal-cuenta.component';
+
 import { MovimientosService } from '../core/services/movimientos.service';
 import { CuentasService } from '../core/services/cuentas.service';
+import { ModalCuentaComponent } from '../components/modal-cuenta/modal-cuenta.component';
+import { ModalMovimientoComponent } from '../components/modal-movimiento/modal-movimiento.component';
 
 @Component({
   selector: 'app-tab2',

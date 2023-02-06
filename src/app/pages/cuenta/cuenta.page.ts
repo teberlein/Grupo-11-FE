@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { ActionSheetController, NavController } from '@ionic/angular';
 import { CuentasService } from 'src/app/core/services/cuentas.service';
 import { MovimientosService } from 'src/app/core/services/movimientos.service';
 
@@ -11,14 +11,20 @@ import { MovimientosService } from 'src/app/core/services/movimientos.service';
 })
 export class CuentaPage implements OnInit {
 
-  cuenta = {};
-  movimientos = [];
+  movimientos = []
+
+  cuenta = {
+    id:0,
+    nombre:'',
+    saldo:0,
+  }
 
   constructor(
     private ar: ActivatedRoute,
     private cuentasService: CuentasService,
     private movimientosService: MovimientosService,
     private navCtrl: NavController,
+    private actionSheetCtrl: ActionSheetController,
   ) {
     ar.params.subscribe(async param =>{
       console.log(param["id"]);
@@ -30,11 +36,50 @@ export class CuentaPage implements OnInit {
     })
   }
 
+  result?: string;
+
   ngOnInit() {
   }
 
   volver() {
-    this.navCtrl.navigateBack("")
+    this.navCtrl.back()
   }
 
+  async borrarCuenta() {
+    await this.cuentasService.borrarCuenta(this.cuenta.id)
+    for (let movimiento of this.movimientos) {
+      await this.movimientosService.borrarMovimiento(movimiento.id);
+    }
+    this.volver();
+  }
+
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: '¿Estás seguro?',
+      subHeader: 'Se perderá el registro de esta información y modificará el saldo de la cuenta',
+      buttons: [
+        {
+          text: 'Eliminar',
+          role: 'destructive',
+          data: {
+            action: 'delete',
+          },
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          data: {
+            action: 'cancel',
+          },
+        },
+      ],
+    });
+
+    await actionSheet.present();
+
+    const result = await actionSheet.onDidDismiss();
+    this.result = JSON.stringify(result, null, 2);
+    if(result.role === "destructive") await this.borrarCuenta()
+
+}
 }

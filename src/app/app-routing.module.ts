@@ -18,9 +18,9 @@ const routes: Routes = [
     path: 'vermas',
     loadChildren: () => import('./pages/vermas/vermas.module').then( m => m.VermasPageModule)
   },
- 
 
 
+  
 ];
 @NgModule({
   imports: [

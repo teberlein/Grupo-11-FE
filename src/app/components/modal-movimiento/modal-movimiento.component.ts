@@ -3,9 +3,10 @@ import { Component, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AlertController, IonicModule, ModalController } from '@ionic/angular';
-import { CuentasService } from '../core/services/cuentas.service';
-import { MovimientosService } from '../core/services/movimientos.service';
-import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
+import { CuentasService } from 'src/app/core/services/cuentas.service';
+import { MovimientosService } from 'src/app/core/services/movimientos.service';
+import { ExploreContainerComponentModule } from 'src/app/explore-container/explore-container.module';
+
 
 
 @Component({
