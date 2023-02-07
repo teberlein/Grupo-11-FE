@@ -28,7 +28,6 @@
     <ion-input Type="number"color="" placeholder="Danger input" placeholder="" (change)="nuevo_movimiento.monto=$event.target.value"></ion-input>
   </ion-item>
   <ion-list>
-    <ion-list-header>General</ion-list-header>
     
     <!--Input nombre movimiento-->
   <ion-item>
@@ -57,32 +56,6 @@
         <ion-select-option value="Gastos financieros">Gastos financieros</ion-select-option>
         <ion-select-option value="Inversiones">Inversiones</ion-select-option>
       </ion-select>
-    </ion-item>
-
-    <!--Boton de fecha y hora-->
-    <ion-item>
-      <ion-label>Fecha y hora</ion-label>
-      <ion-datetime-button datetime="datetime"></ion-datetime-button>
-      <ion-modal [keepContentsMounted]="true">
-        <ng-template>
-          <ion-datetime id="datetime"></ion-datetime>
-        </ng-template>
-      </ion-modal>
-    </ion-item>
-  </ion-list>  
-  <ion-list>
-    <ion-list-header>Mas detalles</ion-list-header>
-    
-     <!--Descripcion del movimiento-->
-    <ion-item>
-      <ion-label>Nota</ion-label>
-      <ion-input placeholder="" type="text" class="text--input"></ion-input>
-    </ion-item>
-
-    <!--Beneficiario-->
-    <ion-item>
-      <ion-label>Beneficiario</ion-label>
-      <ion-input placeholder="" type="text" class="text--input"></ion-input>
     </ion-item>
 
     <!-- <h3>ingreso: {{nuevo_movimiento.ingreso_egreso}}</h3>
