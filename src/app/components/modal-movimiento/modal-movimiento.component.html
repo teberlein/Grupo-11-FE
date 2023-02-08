@@ -1,11 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="cancel_movimiento()">Cancel</ion-button>
+      <ion-button (click)="cancel_movimiento()">Cancelar</ion-button>
     </ion-buttons>
     <ion-title>Nuevo movimiento</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="confirm_movimiento()" [strong]="true">Confirm</ion-button>
+      <ion-button (click)="confirm_movimiento()" [strong]="true">Confirmar</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -49,7 +49,6 @@
       <ion-label>Categoría</ion-label>
       <ion-select placeholder="Seleccione" (ionChange)="nuevo_movimiento.categoria=$event.target.value">
         <ion-select-option value="Comida y bebida">Comida y bebida</ion-select-option>
-        <ion-select-option value="Compras">Compras</ion-select-option>
         <ion-select-option value="Vivienda">Vivienda</ion-select-option>
         <ion-select-option value="Transporte">Transporte</ion-select-option>
         <ion-select-option value="Vida y entretenimiento">Vida y entretenimiento</ion-select-option>

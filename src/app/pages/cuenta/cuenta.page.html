@@ -10,8 +10,9 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>
-        {{cuenta.nombre}}
+      <ion-card-title> 
+        <ion-icon name="card-outline"></ion-icon>
+        {{cuenta.nombre}}:
       </ion-card-title>
       <ion-card-title>$ {{cuenta.saldo}}</ion-card-title>
     </ion-card-header>
@@ -22,7 +23,7 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Ultimos movimientos de {{cuenta.nombre}}</ion-card-title>
+      <ion-card-title>Últimos movimientos de {{cuenta.nombre}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-list>
@@ -36,9 +37,9 @@
   </ion-card>
 
   <div class="borrar">
-    <ion-button (click)="presentActionSheet()">
+    <ion-button class="botonb" (click)="presentActionSheet()" >
       <!-- <code *ngIf="result"> {{ result }} </code> -->
-      <ion-icon name="trash-outline"></ion-icon>
+      <ion-icon name="trash-outline"></ion-icon> &nbsp;
       Borrar cuenta
     </ion-button>
   </div>
