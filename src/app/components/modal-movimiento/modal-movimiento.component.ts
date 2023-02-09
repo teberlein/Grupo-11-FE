@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { AlertController, IonicModule, ModalController } from '@ionic/angular';
+import { AlertController, IonicModule, ModalController, ToastController } from '@ionic/angular';
 import { CuentasService } from 'src/app/core/services/cuentas.service';
 import { MovimientosService } from 'src/app/core/services/movimientos.service';
 import { ExploreContainerComponentModule } from 'src/app/explore-container/explore-container.module';
@@ -28,7 +28,7 @@ export class ModalMovimientoComponent {
   name: string;
 
   constructor(private modalCtrl: ModalController, private movimientoService: MovimientosService, private cuentaService: CuentasService,
-    public alertController: AlertController, movimientosService: MovimientosService, cuentasService: CuentasService) {}
+    public alertController: AlertController, movimientosService: MovimientosService, cuentasService: CuentasService, private toastController: ToastController) {}
 
     searchTerm: string;
     movimientos = []
@@ -65,11 +65,24 @@ export class ModalMovimientoComponent {
   }
 
   async confirm_movimiento() {
-    this.cuenta = await this.cuentaService.getCuentaById(this.cuenta.id)
-    this.actualizarSaldo()
-    await this.movimientoService.addMovimientos(this.nuevo_movimiento)
-    await this.cuentaService.addCuentas(this.cuenta)
-    this.modalCtrl.dismiss(null,'confirm');
+    if(this.nuevo_movimiento.nombre != '' && this.nuevo_movimiento.categoria != '' && this.nuevo_movimiento.cuenta != '' 
+    && this.nuevo_movimiento.monto > 0 && this.nuevo_movimiento.ingreso_egreso != '') {
+      this.cuenta = await this.cuentaService.getCuentaById(this.cuenta.id)
+      this.actualizarSaldo()
+      await this.movimientoService.addMovimientos(this.nuevo_movimiento)
+      await this.cuentaService.addCuentas(this.cuenta)
+      this.modalCtrl.dismiss(null,'confirm');
+    }
+    else {
+      console.log (false)
+      const alert = await this.alertController.create({
+        header: 'Revise que todos los campos hayan sido rellenados',
+        buttons: ['OK'],
+      });
+  
+      await alert.present();
+  
+    }
   }
 
   nuevo_movimiento = {

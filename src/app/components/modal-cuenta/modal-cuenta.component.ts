@@ -21,8 +21,19 @@ export class ModalCuentaComponent {
   }
 
   async confirm_cuenta() {
-    await this.cuentaService.addCuentas(this.nueva_cuenta)
-    this.modalCtrl.dismiss(null,'confirm');
+    if (this.nueva_cuenta.nombre != '' && this.nueva_cuenta.saldo > 0) {
+      await this.cuentaService.addCuentas(this.nueva_cuenta)
+      this.modalCtrl.dismiss(null,'confirm');
+    }
+    else {
+      console.log (false)
+      const alert = await this.alertController.create({
+        header: 'Revise que todos los campos hayan sido rellenados',
+        buttons: ['OK'],
+      });
+  
+      await alert.present();
+    }
   }
 
   nueva_cuenta = {
