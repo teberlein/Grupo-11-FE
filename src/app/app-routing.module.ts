@@ -17,7 +17,11 @@ const routes: Routes = [
   {
     path: 'vermas',
     loadChildren: () => import('./pages/vermas/vermas.module').then( m => m.VermasPageModule)
+  },  {
+    path: 'editar-movimiento',
+    loadChildren: () => import('./pages/editar-movimiento/editar-movimiento.module').then( m => m.EditarMovimientoPageModule)
   },
+
 
 
   

@@ -14,7 +14,8 @@ import { ModalMovimientoComponent } from '../components/modal-movimiento/modal-m
 export class Tab1Page {
 
   constructor(private modalCtrl: ModalController, private movimientoService: MovimientosService, private cuentaService: CuentasService,
-    public alertController: AlertController, movimientosService: MovimientosService, cuentasService: CuentasService) {}
+    public alertController: AlertController, movimientosService: MovimientosService, cuentasService: CuentasService) {this.getMovimientos()
+      this.getCuentas();}
 
   searchTerm: string;
     movimientos = []

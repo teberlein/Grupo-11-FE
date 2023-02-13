@@ -4,6 +4,9 @@
       <ion-button (click)="volver()"><ion-icon name="chevron-back-outline"></ion-icon>Volver</ion-button>
     </ion-buttons>
     <ion-title>Movimiento</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [strong]="true" [routerLink]="['/editar-movimiento',movimiento.id]">Editar</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>

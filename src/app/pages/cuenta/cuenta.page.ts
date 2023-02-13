@@ -56,7 +56,7 @@ export class CuentaPage implements OnInit {
   async presentActionSheet() {
     const actionSheet = await this.actionSheetCtrl.create({
       header: '¿Estás seguro?',
-      subHeader: 'Se perderá el registro de esta información y modificará el saldo de la cuenta',
+      subHeader: 'Se eliminará la cuenta y todos los movimientos relacionados a ella',
       buttons: [
         {
           text: 'Eliminar',

@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">Cancelar</ion-button>
+    </ion-buttons>
+    <ion-title>Editar movimiento</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm_movimiento()" [strong]="true">Confirmar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+
+  <!--Selector ingreso/egreso-->
+  <ion-item color="light">
+    <ion-segment color="light" value="light" (ionChange)="movimiento_final.ingreso_egreso=$event.target.value" [(ngModel)]="movimiento_final.ingreso_egreso">
+      <ion-segment-button value="light" value=true>
+        <ion-label>Ingreso</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="segment" value=false>
+        <ion-label>Egreso</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-item>
+
+   <!--Input monto de plata-->
+  <ion-item color="light">
+    <ion-label>ARS $</ion-label>
+    <ion-input Type="number"color="" value="{{movimiento_inicial.monto}}" (change)="movimiento_final.monto=$event.target.value"></ion-input>
+  </ion-item>
+  <ion-list>
+    
+    <!--Input nombre movimiento-->
+  <ion-item>
+    <ion-label>Nombre</ion-label>
+    <ion-input Type="text"color="" value="{{movimiento_inicial.nombre}}" (change)="movimiento_final.nombre=$event.target.value" class="text--input"></ion-input>
+  </ion-item>
+
+    <!--Selector de cuenta-->
+    <ion-item>
+      <ion-label>Cuenta</ion-label>
+      <ion-select placeholder="{{cuenta_inicial.nombre}}" (ionChange)="movimiento_final.cuenta=$event.target.value  && cuenta_final.id=$event.target.value" [(ngModel)]="movimiento_inicial.cuenta">
+        <ion-select-option *ngFor="let cuenta of cuentas" value="{{cuenta.id}}">{{cuenta.nombre}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+     <!--Selector de categoria-->
+    <ion-item>
+      <ion-label>Categoría</ion-label>
+      <ion-select placeholder="{{movimiento_inicial.categoria}}" (ionChange)="movimiento_final.categoria=$event.target.value" [(ngModel)]="movimiento_inicial.categoria">
+        <ion-select-option value="Comida y bebida">Comida y bebida</ion-select-option>
+        <ion-select-option value="Compras">Compras</ion-select-option>
+        <ion-select-option value="Vivienda">Vivienda</ion-select-option>
+        <ion-select-option value="Transporte">Transporte</ion-select-option>
+        <ion-select-option value="Vida y entretenimiento">Vida y entretenimiento</ion-select-option>
+        <ion-select-option value="Comunicaciones">Comunicaciones, PC</ion-select-option>
+        <ion-select-option value="Gastos financieros">Gastos financieros</ion-select-option>
+        <ion-select-option value="Inversiones">Inversiones</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- <h3>ingreso: {{movimiento_final.ingreso_egreso}}</h3>
+    <h3>monto: ${{movimiento_final.monto}}</h3>
+    <h3>monto inicial: ${{movimiento_inicial.monto}}</h3>
+    <h3>nombre: {{movimiento_final.nombre}}</h3>
+    <h3>cuenta: {{movimiento_final.cuenta}}</h3>
+    <h3>categoria: {{movimiento_final.categoria}}</h3>
+    <h3>Cuenta incial: {{cuenta_inicial.id}}{{cuenta_inicial.nombre}}</h3>
+    <h3>cuenta final id: {{cuenta_final.id}}</h3>
+    <h3>Cuenta final nombre:</h3> -->
+  </ion-list>  
+</ion-content>

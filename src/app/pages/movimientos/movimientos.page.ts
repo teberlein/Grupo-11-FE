@@ -50,8 +50,6 @@ export class MovimientosPage implements OnInit {
   }
 
   volver() {
-    this.actualizarSaldo()
-    // console.log(this.movimiento, this.cuenta)
     this.navCtrl.back();
   }
 
@@ -78,7 +76,7 @@ export class MovimientosPage implements OnInit {
   async presentActionSheet() {
     const actionSheet = await this.actionSheetCtrl.create({
       header: '¿Estás seguro?',
-      subHeader: 'Se perderá el registro de esta información y modificará el saldo de la cuenta',
+      subHeader: 'Se eliminará el movimiento y se modificará el saldo de la cuenta',
       buttons: [
         {
           text: 'Eliminar',
