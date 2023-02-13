@@ -13,7 +13,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-card>
+  <!-- <ion-card>
       <ion-card-header>
         <ion-card-title>Saldo</ion-card-title>
       </ion-card-header>
@@ -43,7 +43,8 @@
       <ion-card-content>
         Here's a small text description for the card content. Nothing more, nothing less.
       </ion-card-content>
-  </ion-card>
+  </ion-card> -->
+
 
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
     <ion-fab-button color="primary" class="">
@@ -58,6 +59,11 @@
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
-  
+  <canvas baseChart class="chart"
+        [data]="doughnutChartData"
+        [type]="doughnutChartType"
+        [options]="doughnutChartOptions"
+        [plugins]="doughnutChartPlugins">
+  </canvas>
 
 </ion-content>

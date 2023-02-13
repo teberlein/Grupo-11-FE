@@ -10,11 +10,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ModalMovimientoComponent } from './components/modal-movimiento/modal-movimiento.component';
 import { ModalCuentaComponent } from './components/modal-cuenta/modal-cuenta.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
   declarations: [AppComponent, ModalMovimientoComponent, ModalCuentaComponent],
-  imports: [BrowserModule, FormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule ],
+  imports: [BrowserModule, FormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, NgChartsModule, NgChartsModule.forRoot() ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

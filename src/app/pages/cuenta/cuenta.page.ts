@@ -29,7 +29,7 @@ export class CuentaPage implements OnInit {
     ar.params.subscribe(async param =>{
       console.log(param["id"]);
       this.cuenta = await this.cuentasService.getCuentaById(param["id"])
-      this.movimientos = await this.movimientosService.getMovimientosPorCategoria(param["id"])
+      this.movimientos = await this.movimientosService.getMovimientosPorCuenta(param["id"])
       this.movimientos = this.movimientos.reverse()
       console.table(this.movimientos)
       console.table(this.cuenta)

@@ -15,8 +15,8 @@ export class MovimientosService {
     return resjson
   }
 
-  async getMovimientosPorCategoria(categoria) {
-    const res = await fetch('http://localhost:8080/movimiento/query?cuenta=' + categoria);
+  async getMovimientosPorCuenta(cuenta) {
+    const res = await fetch('http://localhost:8080/movimiento/query?cuenta=' + cuenta);
     const resjson = (await res).json()
     return resjson
   }
