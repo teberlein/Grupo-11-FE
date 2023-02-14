@@ -17,6 +17,12 @@
           <ion-label><h1>{{movimiento.nombre}}</h1> </ion-label>
         </ion-item>
         <ion-item>
+          <ion-icon name="analytics-outline" slot="start"></ion-icon>
+          <ion-label><h1 class="columna1">Tipo:</h1></ion-label>
+          <ion-label *ngIf="movimiento?.ingreso_egreso == true"><h1>Ingreso</h1> </ion-label>
+          <ion-label *ngIf="movimiento?.ingreso_egreso == false"><h1>Egreso</h1> </ion-label>
+        </ion-item>
+        <ion-item>
           <ion-icon name="wallet-outline" slot="start"></ion-icon>
           <ion-label><h1 class="columna1">Monto:</h1></ion-label>
           <ion-label>

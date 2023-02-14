@@ -7,12 +7,30 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-header collapse="condense" class="header">
     <ion-toolbar>
       <ion-title size="large">Estadísticas</ion-title>
     </ion-toolbar>
   </ion-header>
 
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title *ngIf="cuentas?.length != 0">Cuentas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <h1 *ngIf="cuentas?.length == 0" style="display: flex; text-align: center;">Para poder visualizar las estadísticas primero deberás agregar una cuenta</h1>
+      <canvas *ngIf="cuentas?.length != 0"
+      baseChart class="chart"
+      [data]="doughnutChartData"
+      [type]="'doughnut'"
+      [options]="chartOptions"
+      ></canvas>
+    </ion-card-content>
+  </ion-card>
   <!-- <ion-card>
       <ion-card-header>
         <ion-card-title>Saldo</ion-card-title>
@@ -44,8 +62,7 @@
         Here's a small text description for the card content. Nothing more, nothing less.
       </ion-card-content>
   </ion-card> -->
-
-
+  
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
     <ion-fab-button color="primary" class="">
       <ion-icon name="add"></ion-icon>
@@ -59,11 +76,4 @@
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
-  
-  <canvas baseChart class="chart"
-    [data]="doughnutChartData"
-    [type]="'doughnut'"
-    [options]="chartOptions"
-  ></canvas>
-
 </ion-content>

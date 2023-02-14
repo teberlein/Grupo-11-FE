@@ -28,23 +28,37 @@ export class Tab2Page {
   movimientos = []
   cuentas: cuenta[] = []
 
-  ngOnInit(){
-    this.getCuentas()
-   }
+  // async ngOnInit(){
+  //   Chart.register(...registerables)
+  //   this.cuentas = []
+  //   this.doughnutChartData.labels = []
+  //   this.doughnutChartData.datasets[0].data = []
+  //   await this.getCuentas()
+  //  }
+
+   async ionViewWillEnter() {
+      Chart.register(...registerables)
+      console.log('ionViewWillEnter')
+      this.cuentas = []
+      this.doughnutChartData.labels = []
+      this.doughnutChartData.datasets[0].data = []
+      await this.getCuentas()
+    }
 
   async getCuentas() {
     this.cuentas = await this.cuentaService.getCuentas()
     for (let cuenta of this.cuentas) {
-      this.doughnutChartLabels.push(cuenta.nombre)
+      this.doughnutChartData.labels.push(cuenta.nombre)
       this.doughnutChartData.datasets[0].data.push(Number(cuenta.saldo))
+      // console.log (cuenta.nombre)
     }
     this.chart?.update()
     this.chart?.render();
   }
 
-   public doughnutChartLabels: string[] = [];
+  //  public doughnutChartLabels: string[] = [];
    public doughnutChartData: ChartData = {
-     labels: this.doughnutChartLabels,
+     labels: [],
      datasets: [
        {
          data: [],
@@ -74,14 +88,29 @@ export class Tab2Page {
    }
 
    async modalMovimiento() {
-    const modal = await this.modalCtrl.create({
-      component: ModalMovimientoComponent,
-    });
-    modal.present();
+    if(this.cuentas.length == 0){
+      console.log (false)
+      const alert = await this.alertController.create({
+        header: 'Para anadir un movimiento primero debe añadir una cuenta',
+        buttons: ['OK'],
+      });
+  
+      await alert.present();
+    }
 
-    const { data, role } = await modal.onWillDismiss()
-    this.chart?.update()
-    this.chart?.render();
+    else if (this.cuentas.length > 0)
+    {const modal = await this.modalCtrl.create
+      ({
+        component: ModalMovimientoComponent,
+      });
+      modal.present();
+
+      const { data, role } = await modal.onWillDismiss();
+      console.log(this.cuentas.length)
+      this.doughnutChartData.labels = []
+      this.doughnutChartData.datasets[0].data = []
+      await this.getCuentas();
+    }
   }
 
   async modalCuenta() {
@@ -91,7 +120,20 @@ export class Tab2Page {
  modal.present();
 
  const { data, role } = await modal.onWillDismiss()
-  this.chart?.update()
-  this.chart?.render();
+ this.cuentas = []
+    this.doughnutChartData.labels = []
+    this.doughnutChartData.datasets[0].data = []
+    await this.getCuentas();
  }
+
+  handleRefresh(event) {
+  setTimeout(async () => {
+    // console.log('actualizando')
+    this.cuentas = []
+    this.doughnutChartData.labels = []
+    this.doughnutChartData.datasets[0].data = []
+    await this.getCuentas()
+    event.target.complete();
+  }, 500);
+};
 }

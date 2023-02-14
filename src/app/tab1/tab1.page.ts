@@ -30,6 +30,12 @@ export class Tab1Page {
     // this.getCuentas();
   }
 
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter')
+    this.getMovimientos()
+    this.getCuentas();
+  }
+
   async getMovimientos() {
     this.movimientos = await this.movimientoService.getMovimientos()
     this.movimientos = this.movimientos.reverse()
@@ -43,14 +49,28 @@ export class Tab1Page {
   }
 
   async modalMovimiento() {
-    const modal = await this.modalCtrl.create({
-      component: ModalMovimientoComponent,
-    });
-    modal.present();
+    if(this.cuentas.length == 0){
+      console.log (false)
+      const alert = await this.alertController.create({
+        header: 'Para anadir un movimiento primero debe añadir una cuenta',
+        buttons: ['OK'],
+      });
+  
+      await alert.present();
+    }
 
-    const { data, role } = await modal.onWillDismiss();
-    this.getMovimientos();
-    this.getCuentas();
+    else if (this.cuentas.length > 0)
+    {const modal = await this.modalCtrl.create
+      ({
+        component: ModalMovimientoComponent,
+      });
+      modal.present();
+
+      const { data, role } = await modal.onWillDismiss();
+      console.log(this.cuentas.length)
+      this.getMovimientos();
+      this.getCuentas();
+    }
   }
 
   async modalCuenta() {
@@ -63,5 +83,14 @@ export class Tab1Page {
     this.getMovimientos();
     this.getCuentas();
   }
+
+  handleRefresh(event) {
+    setTimeout(() => {
+      console.log('actualizando')
+      this.getCuentas()
+      this.getMovimientos()
+      event.target.complete();
+    }, 100);
+  };
 }
 
