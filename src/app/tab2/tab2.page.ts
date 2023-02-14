@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 
 import { MovimientosService } from '../core/services/movimientos.service';
 import { CuentasService } from '../core/services/cuentas.service';
 import { ModalCuentaComponent } from '../components/modal-cuenta/modal-cuenta.component';
 import { ModalMovimientoComponent } from '../components/modal-movimiento/modal-movimiento.component';
-import { ChartData, ChartEvent, ChartType } from 'chart.js';
+import { Chart, registerables, ChartData, ChartEvent, ChartType } from 'chart.js/auto';
 import { cuenta } from '../core/interfaces/cuenta';
+import { BaseChartDirective } from 'ng2-charts';
+
 
 @Component({
   selector: 'app-tab2',
@@ -14,12 +16,12 @@ import { cuenta } from '../core/interfaces/cuenta';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
   constructor(private modalCtrl: ModalController, private movimientoService: MovimientosService, private cuentaService: CuentasService,
     public alertController: AlertController, movimientosService: MovimientosService, cuentasService: CuentasService) 
     {
-      // this.getMovimientos()
-      // this.getCuentas();
+      Chart.register(...registerables)
     }
 
   searchTerm: string;
@@ -27,70 +29,69 @@ export class Tab2Page {
   cuentas: cuenta[] = []
 
   ngOnInit(){
-    this.getMovimientos()
     this.getCuentas()
-    // this.addLabels()
    }
-   
-  async getMovimientos() {
-    this.movimientos = await this.movimientoService.getMovimientos()
-    // console.table(this.movimientos)
-  }
 
   async getCuentas() {
     this.cuentas = await this.cuentaService.getCuentas()
     for (let cuenta of this.cuentas) {
       this.doughnutChartLabels.push(cuenta.nombre)
-      // this.doughnutChartData.datasets[0].data.push(Number(cuenta.saldo))
-      console.log(cuenta.nombre)
-      console.table(this.doughnutChartData.datasets[0].data);
+      this.doughnutChartData.datasets[0].data.push(Number(cuenta.saldo))
     }
-    console.log(this.doughnutChartLabels);
-    // console.table(this.cuentas)
+    this.chart?.update()
+    this.chart?.render();
   }
 
-  // addLabels() {
-  //   for (let cuenta of this.cuentas) {
-  //     this.doughnutChartLabels.push(cuenta.nombre)
-  //     console.log(cuenta.nombre);
-  //   }
-  //   console.log(this.cuentas);
-  // }
+   public doughnutChartLabels: string[] = [];
+   public doughnutChartData: ChartData = {
+     labels: this.doughnutChartLabels,
+     datasets: [
+       {
+         data: [],
+         label: 'Saldo',
+        //  backgroundColor: [
+        //   'red',
+        //   'pink',
+        //   'green',
+        //   'yellow',
+        //   'orange',
+        //   'blue',			
+        // ],
+       }
+     ]
+   };
+   public chartOptions = {
+    responsive: true
+  };
+   public doughnutChartType: ChartType = 'doughnut';
 
-   async modalMovimiento() {
-     const modal = await this.modalCtrl.create({
-       component: ModalMovimientoComponent,
-     });
-     modal.present();
-
-     const { data, role } = await modal.onWillDismiss();
+  //events
+   public chartClicked({ event, active }: { event: ChartEvent, active: {}[] }): void {
+     console.log(event, active);
+   }
+  public chartHovered({ event, active }: { event: ChartEvent, active: {}[] }): void {
+     console.log(event, active);
    }
 
-   async modalCuenta() {
-     const modal = await this.modalCtrl.create({
-       component: ModalCuentaComponent,
-     });
-  modal.present();
+   async modalMovimiento() {
+    const modal = await this.modalCtrl.create({
+      component: ModalMovimientoComponent,
+    });
+    modal.present();
 
-  const { data, role } = await modal.onWillDismiss();
+    const { data, role } = await modal.onWillDismiss()
+    this.chart?.update()
+    this.chart?.render();
   }
 
-  // Doughnut
-  public doughnutChartLabels: string[] = [];
-  public doughnutChartData: ChartData<'doughnut'> = {
-    labels: this.doughnutChartLabels,
-    datasets: [
-      { data: [200,100] },
-    ]
-  };
-  public doughnutChartType: ChartType = 'doughnut';
+  async modalCuenta() {
+    const modal = await this.modalCtrl.create({
+      component: ModalCuentaComponent,
+    });
+ modal.present();
 
-  // events
-  public chartClicked({ event, active }: { event: ChartEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public chartHovered({ event, active }: { event: ChartEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
+ const { data, role } = await modal.onWillDismiss()
+  this.chart?.update()
+  this.chart?.render();
+ }
 }

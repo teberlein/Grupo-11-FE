@@ -26,12 +26,8 @@ export class Tab1Page {
     cuentas = []
 
   ngOnInit(){
-    this.getMovimientos()
-    this.getCuentas();
-  }
-
-  ionViewWillEnter (){
-    this.ngOnInit();
+    // this.getMovimientos()
+    // this.getCuentas();
   }
 
   async getMovimientos() {

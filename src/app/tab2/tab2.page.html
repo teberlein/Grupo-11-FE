@@ -59,11 +59,11 @@
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
+  
   <canvas baseChart class="chart"
-        [data]="doughnutChartData"
-        [type]="doughnutChartType"
-        [options]="doughnutChartOptions"
-        [plugins]="doughnutChartPlugins">
-  </canvas>
+    [data]="doughnutChartData"
+    [type]="'doughnut'"
+    [options]="chartOptions"
+  ></canvas>
 
 </ion-content>
