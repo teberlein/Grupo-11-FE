@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ActionSheetController, NavController } from '@ionic/angular';
+import { ActionSheetController, AlertController, NavController } from '@ionic/angular';
 import { CuentasService } from 'src/app/core/services/cuentas.service';
 import { MovimientosService } from 'src/app/core/services/movimientos.service';
+import { ToastService } from 'src/app/core/services/toast.service';
 
 @Component({
   selector: 'app-editar-movimiento',
@@ -17,6 +18,8 @@ export class EditarMovimientoPage implements OnInit {
     private movimientosService: MovimientosService,
     private navCtrl: NavController,
     private actionSheetCtrl: ActionSheetController,
+    private ts:ToastService,
+    public alertController: AlertController
   ) {
     ar.params.subscribe(async param =>{
       console.log(param["id"]);
@@ -128,14 +131,27 @@ export class EditarMovimientoPage implements OnInit {
    }
   
   async confirm_movimiento() {
-    await this.movimientosService.addMovimientos(this.movimiento_final)
-    await this.cambiarCuenta()
-    await this.actualizarSaldo()
-    // console.log ('monto inicial: ' + this.movimiento_inicial.monto)
-    // console.log ('monto final: ' + this.movimiento_final.monto)
-    // console.table(this.cuenta_final)
-    await this.cuentaService.addCuentas(this.cuenta_final)
-    this.volver();
+    if(this.movimiento_final.nombre != '' && this.movimiento_final.categoria != '' && this.movimiento_final.cuenta != '' 
+    && this.movimiento_final.monto > 0 && this.movimiento_final.ingreso_egreso != '') {
+      await this.movimientosService.addMovimientos(this.movimiento_final)
+      await this.cambiarCuenta()
+      await this.actualizarSaldo()
+      // console.log ('monto inicial: ' + this.movimiento_inicial.monto)
+      // console.log ('monto final: ' + this.movimiento_final.monto)
+      // console.table(this.cuenta_final)
+      await this.cuentaService.addCuentas(this.cuenta_final)
+      this.volver();
+      this.ts.presentToast("Los cambios se realizaron con éxito.");
+    }
+    else {
+      console.log (false)
+      const alert = await this.alertController.create({
+        header: 'Revise que todos los campos hayan sido rellenados',
+        buttons: ['OK'],
+      });
+  
+      await alert.present();
+    }
   }
 
   movimiento_final = {

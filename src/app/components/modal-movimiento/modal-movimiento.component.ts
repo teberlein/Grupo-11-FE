@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AlertController, IonicModule, ModalController, ToastController } from '@ionic/angular';
 import { CuentasService } from 'src/app/core/services/cuentas.service';
 import { MovimientosService } from 'src/app/core/services/movimientos.service';
+import { ToastService } from 'src/app/core/services/toast.service';
 import { ExploreContainerComponentModule } from 'src/app/explore-container/explore-container.module';
 
 
@@ -28,7 +29,7 @@ export class ModalMovimientoComponent {
   name: string;
 
   constructor(private modalCtrl: ModalController, private movimientoService: MovimientosService, private cuentaService: CuentasService,
-    public alertController: AlertController, movimientosService: MovimientosService, cuentasService: CuentasService, private toastController: ToastController) {}
+    public alertController: AlertController, movimientosService: MovimientosService, cuentasService: CuentasService, private toastController: ToastController, private ts:ToastService) {}
 
     searchTerm: string;
     movimientos = []
@@ -72,6 +73,7 @@ export class ModalMovimientoComponent {
       await this.movimientoService.addMovimientos(this.nuevo_movimiento)
       await this.cuentaService.addCuentas(this.cuenta)
       this.modalCtrl.dismiss(null,'confirm');
+      this.ts.presentToast("El movimiento se agregó con éxito.");
     }
     else {
       console.log (false)

@@ -5,6 +5,7 @@ import { CuentasService } from 'src/app/core/services/cuentas.service';
 import { MovimientosService } from 'src/app/core/services/movimientos.service';
 
 import { ActionSheetController } from '@ionic/angular';
+import { ToastService } from 'src/app/core/services/toast.service';
 
 @Component({
   selector: 'app-movimientos',
@@ -19,6 +20,7 @@ export class MovimientosPage implements OnInit {
     private movimientosService: MovimientosService,
     private navCtrl: NavController,
     private actionSheetCtrl: ActionSheetController,
+    private ts :ToastService
   ) {
     ar.params.subscribe(async param =>{
       // console.log(param["id"]);
@@ -71,6 +73,7 @@ export class MovimientosPage implements OnInit {
     this.actualizarSaldo()
     await this.cuentaService.addCuentas(this.cuenta)
     this.volver();
+    this.ts.presentToast("Se borró el movimiento con éxito.");
   }
 
   async presentActionSheet() {
