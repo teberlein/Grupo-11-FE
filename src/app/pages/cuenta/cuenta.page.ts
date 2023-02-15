@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ActionSheetController, NavController } from '@ionic/angular';
 import { CuentasService } from 'src/app/core/services/cuentas.service';
 import { MovimientosService } from 'src/app/core/services/movimientos.service';
+import { ToastService } from 'src/app/core/services/toast.service';
 
 @Component({
   selector: 'app-cuenta',
@@ -25,6 +26,7 @@ export class CuentaPage implements OnInit {
     private movimientosService: MovimientosService,
     private navCtrl: NavController,
     private actionSheetCtrl: ActionSheetController,
+    private ts: ToastService
   ) {
     ar.params.subscribe(async param =>{
       console.log(param["id"]);
@@ -51,6 +53,7 @@ export class CuentaPage implements OnInit {
       await this.movimientosService.borrarMovimiento(movimiento.id);
     }
     this.volver();
+    this.ts.presentToast("La cuenta se borró con éxito.");
   }
 
   async presentActionSheet() {
