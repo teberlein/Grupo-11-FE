@@ -51,7 +51,7 @@
           <ion-item *ngFor="let movimiento of cincoMovimientos" [routerLink]="['/movimientos',movimiento.id]" [class.ingreso] = "movimiento.ingreso_egreso == true" [class.egreso] = "movimiento.ingreso_egreso == false">
               <ion-icon name="logo-usd" [class.icono-ingreso] = "movimiento.ingreso_egreso == true" [class.icono-egreso] = "movimiento.ingreso_egreso == false"></ion-icon>
             <ion-label class="gasto">{{movimiento.nombre}}</ion-label>
-            <ion-label>$ {{movimiento.monto}}</ion-label>
+            <ion-label>$ {{movimiento.monto.toLocaleString('es-ES')}}</ion-label>
           </ion-item>
         </ion-list>
       </ion-card-content>
