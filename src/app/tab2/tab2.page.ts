@@ -8,6 +8,7 @@ import { ModalMovimientoComponent } from '../components/modal-movimiento/modal-m
 import { Chart, registerables, ChartData, ChartEvent, ChartType } from 'chart.js/auto';
 import { cuenta } from '../core/interfaces/cuenta';
 import { BaseChartDirective } from 'ng2-charts';
+import { ToastService } from '../core/services/toast.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class Tab2Page {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
   constructor(private modalCtrl: ModalController, private movimientoService: MovimientosService, private cuentaService: CuentasService,
-    public alertController: AlertController, movimientosService: MovimientosService, cuentasService: CuentasService) 
+    public alertController: AlertController, movimientosService: MovimientosService, cuentasService: CuentasService, private ts:ToastService) 
     {
       Chart.register(...registerables)
     }
@@ -115,6 +116,7 @@ export class Tab2Page {
       this.doughnutChartData.labels = []
       this.doughnutChartData.datasets[0].data = []
       await this.getCuentas();
+      this.ts.presentToast("El movimiento se agregó con éxito.");
     }
   }
 
@@ -130,6 +132,7 @@ export class Tab2Page {
     this.doughnutChartData.labels = []
     this.doughnutChartData.datasets[0].data = []
     await this.getCuentas();
+    this.ts.presentToast("La cuenta se agregó con éxito.");
  }
 
   handleRefresh(event) {
