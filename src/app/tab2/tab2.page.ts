@@ -27,6 +27,7 @@ export class Tab2Page {
   searchTerm: string;
   movimientos = []
   cuentas: cuenta[] = []
+  saldoTotal: number = 0
 
   // async ngOnInit(){
   //   Chart.register(...registerables)
@@ -39,6 +40,7 @@ export class Tab2Page {
    async ionViewWillEnter() {
       Chart.register(...registerables)
       console.log('ionViewWillEnter')
+      this.saldoTotal = 0
       this.cuentas = []
       this.doughnutChartData.labels = []
       this.doughnutChartData.datasets[0].data = []
@@ -50,6 +52,8 @@ export class Tab2Page {
     for (let cuenta of this.cuentas) {
       this.doughnutChartData.labels.push(cuenta.nombre)
       this.doughnutChartData.datasets[0].data.push(Number(cuenta.saldo))
+      this.saldoTotal = Number(this.saldoTotal) + Number(cuenta.saldo)
+      console.log(this.saldoTotal)
       // console.log (cuenta.nombre)
     }
     this.chart?.update()
@@ -107,6 +111,7 @@ export class Tab2Page {
 
       const { data, role } = await modal.onWillDismiss();
       console.log(this.cuentas.length)
+      this.saldoTotal = 0
       this.doughnutChartData.labels = []
       this.doughnutChartData.datasets[0].data = []
       await this.getCuentas();
@@ -120,7 +125,8 @@ export class Tab2Page {
  modal.present();
 
  const { data, role } = await modal.onWillDismiss()
- this.cuentas = []
+    this.cuentas = []
+    this.saldoTotal = 0
     this.doughnutChartData.labels = []
     this.doughnutChartData.datasets[0].data = []
     await this.getCuentas();
@@ -130,6 +136,7 @@ export class Tab2Page {
   setTimeout(async () => {
     // console.log('actualizando')
     this.cuentas = []
+    this.saldoTotal = 0
     this.doughnutChartData.labels = []
     this.doughnutChartData.datasets[0].data = []
     await this.getCuentas()

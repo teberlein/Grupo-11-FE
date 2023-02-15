@@ -19,7 +19,7 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title *ngIf="cuentas?.length != 0">Cuentas</ion-card-title>
+      <ion-card-title *ngIf="cuentas?.length != 0" style="text-align: center ;">Cuentas</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <h1 *ngIf="cuentas?.length == 0" style="display: flex; text-align: center;">Para poder visualizar las estadísticas primero deberás agregar una cuenta</h1>
@@ -29,6 +29,7 @@
       [type]="'doughnut'"
       [options]="chartOptions"
       ></canvas>
+      <h1 style="padding-top: 20px; text-align: center;" *ngIf="cuentas?.length != 0">Saldo total: ${{saldoTotal}}</h1>
     </ion-card-content>
   </ion-card>
   <!-- <ion-card>

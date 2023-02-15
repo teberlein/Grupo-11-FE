@@ -13,11 +13,11 @@
 
   <!--Selector ingreso/egreso-->
   <ion-item color="light">
-    <ion-segment color="light" value="light" (ionChange)="nuevo_movimiento.ingreso_egreso=$event.target.value" >
-      <ion-segment-button value="light" value="true">
+    <ion-segment (ionChange)="nuevo_movimiento.ingreso_egreso=$event.target.value" >
+      <ion-segment-button value="true">
         <ion-label>Ingreso</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="segment" value="false">
+      <ion-segment-button value="false">
         <ion-label>Egreso</ion-label>
       </ion-segment-button>
     </ion-segment>
@@ -48,8 +48,10 @@
     <ion-item>
       <ion-label>Categoría</ion-label>
       <ion-select placeholder="Seleccione" (ionChange)="nuevo_movimiento.categoria=$event.target.value">
+        <ion-select-option value="Sueldo">Sueldo</ion-select-option>
+        <ion-select-option value="Ingreso">Ingreso</ion-select-option>
         <ion-select-option value="Comida y bebida">Comida y bebida</ion-select-option>
-        <ion-select-option value="Compras">Compras</ion-select-option>
+        <ion-select-option value="Compras">Compras</ion-select-option>        
         <ion-select-option value="Vivienda">Vivienda</ion-select-option>
         <ion-select-option value="Transporte">Transporte</ion-select-option>
         <ion-select-option value="Vida y entretenimiento">Vida y entretenimiento</ion-select-option>

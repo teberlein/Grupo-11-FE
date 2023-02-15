@@ -11,11 +11,9 @@
 </ion-header>
 <ion-content>
     <ion-card class="movimiento2" lines="none">
-        <ion-item>
-          <ion-icon name="accessibility-outline" slot="start"></ion-icon>
-          <ion-label><h1 class="columna1">Nombre:</h1></ion-label>
-          <ion-label><h1>{{movimiento.nombre}}</h1> </ion-label>
-        </ion-item>
+      <ion-card-header>
+        <ion-card-title style="text-align: center;">{{movimiento.nombre}}</ion-card-title>
+      </ion-card-header>
         <ion-item>
           <ion-icon name="analytics-outline" slot="start"></ion-icon>
           <ion-label><h1 class="columna1">Tipo:</h1></ion-label>
